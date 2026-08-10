@@ -1,1589 +1,1565 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<title>Network Diagnostics</title>
+    <title>Network Diagnostics</title>
 
-<style>
+    <style>
 
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
-        margin: 0;
-
-        min-height: 100vh;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        padding: 20px;
-
-        font-family:
-            Arial,
-            Helvetica,
-            sans-serif;
-
-        background:
-            #050807;
-
-        color: #d8ffe5;
-
-        transition:
-            background 1.4s ease,
-            color 1.4s ease;
-    }
-
-
-    /* =========================
-       TECH MODE
-    ========================= */
-
-    body.tech-mode {
-        background:
-            radial-gradient(
-                circle at top,
-                #10351e 0%,
-                #06130b 42%,
-                #020504 100%
-            );
-    }
-
-
-    /* =========================
-       LOVE MODE
-    ========================= */
-
-    body.love-mode {
-        background:
-            radial-gradient(
-                circle at 50% 0%,
-                #5b1737 0%,
-                #260b1a 42%,
-                #10050c 100%
-            );
-
-        color: white;
-    }
-
-
-    .card {
-
-        width: 100%;
-
-        max-width: 560px;
-
-        min-height: 570px;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        padding: 35px 30px;
-
-        background:
-            rgba(4, 12, 7, 0.97);
-
-        border:
-            1px solid
-            rgba(63, 255, 125, 0.25);
-
-        border-radius: 25px;
-
-        text-align: center;
-
-        box-shadow:
-            0 25px 70px
-            rgba(0, 0, 0, 0.7);
-
-        transition:
-            background 1.4s ease,
-            border 1.4s ease,
-            box-shadow 1.4s ease;
-    }
-
-
-    body.love-mode .card {
-
-        background:
-            rgba(30, 7, 20, 0.97);
-
-        border:
-            1px solid
-            rgba(255, 110, 160, 0.3);
-
-        box-shadow:
-            0 25px 70px
-            rgba(0, 0, 0, 0.65),
-
-            0 0 40px
-            rgba(220, 30, 100, 0.12);
-    }
-
-
-    .screen {
-
-        width: 100%;
-
-        animation:
-            appear 0.5s ease;
-    }
-
-
-    .hidden {
-        display: none;
-    }
-
-
-    /* =========================
-       TECH TEXT
-    ========================= */
-
-    .tech-icon {
-
-        font-size: 55px;
-
-        margin-bottom: 10px;
-    }
-
-
-    .tech-title {
-
-        margin:
-            5px 0 10px;
-
-        color: #55ff88;
-
-        font-size: 38px;
-
-        letter-spacing:
-            1px;
-    }
-
-
-    .tech-subtitle {
-
-        color: #8cffaa;
-
-        font-size: 18px;
-
-        margin-bottom: 25px;
-    }
-
-
-    .terminal {
-
-        margin:
-            20px 0;
-
-        padding: 15px;
-
-        text-align: left;
-
-        background:
-            #020604;
-
-        border:
-            1px solid
-            rgba(70, 255, 120, 0.2);
-
-        border-radius: 10px;
-
-        color: #52ff82;
-
-        font-family:
-            "Courier New",
-            monospace;
-
-        font-size: 14px;
-
-        line-height: 1.7;
-    }
-
-
-    .input-box {
-
-        width: 100%;
-
-        padding: 15px 18px;
-
-        margin-top: 10px;
-
-        background:
-            #020604;
-
-        border:
-            1px solid
-            rgba(70, 255, 120, 0.4);
-
-        border-radius: 10px;
-
-        outline: none;
-
-        color: #8cffaa;
-
-        font-size: 17px;
-
-        text-align: center;
-    }
-
-
-    .input-box:focus {
-
-        border-color:
-            #55ff88;
-
-        box-shadow:
-            0 0 15px
-            rgba(70, 255, 120, 0.15);
-    }
-
-
-    .tech-button {
-
-        background:
-            #0a2915;
-
-        border:
-            1px solid
-            #35d96a;
-
-        color:
-            #7dff9e;
-    }
-
-
-    .tech-button:hover {
-
-        background:
-            #0f3b1d;
-
-        box-shadow:
-            0 0 20px
-            rgba(53, 217, 106, 0.2);
-    }
-
-
-    .progress {
-
-        width: 100%;
-
-        height: 12px;
-
-        margin:
-            25px 0;
-
-        background:
-            #071109;
-
-        border-radius: 20px;
-
-        overflow: hidden;
-    }
-
-
-    .progress-bar {
-
-        height: 100%;
-
-        width: 0%;
-
-        background:
-            #45e878;
-
-        transition:
-            width 2s ease;
-    }
-
-
-    /* =========================
-       LOVE TEXT
-    ========================= */
-
-    .emoji {
-
-        font-size: 58px;
-
-        margin-bottom: 10px;
-    }
-
-
-    h1 {
-
-        margin:
-            5px 0 12px;
-
-        font-size: 42px;
-
-        color:
-            #ff709f;
-    }
-
-
-    h2 {
-
-        margin:
-            8px 0 22px;
-
-        font-size: 27px;
-
-        color:
-            #ff9abb;
-    }
-
-
-    p {
-
-        margin:
-            12px 0;
-
-        font-size: 18px;
-
-        line-height: 1.6;
-
-        color:
-            #f0dbe4;
-    }
-
-
-    .highlight {
-
-        color:
-            #ff87ae;
-
-        font-size: 21px;
-
-        font-weight: bold;
-    }
-
-
-    .hadith {
-
-        margin:
-            20px 0;
-
-        padding:
-            18px;
-
-        border-left:
-            3px solid
-            #ff709f;
-
-        background:
-            rgba(
-                255,
-                100,
-                150,
-                0.06
-            );
-
-        border-radius:
-            12px;
-
-        color:
-            #ffd4e1;
-
-        font-size:
-            16px;
-
-        line-height:
-            1.6;
-    }
-
-
-    .source {
-
-        margin-top:
-            10px;
-
-        color:
-            #aa8c99;
-
-        font-size:
-            13px;
-    }
-
-
-    /* =========================
-       BUTTONS
-    ========================= */
-
-    .choices {
-
-        display:
-            flex;
-
-        flex-direction:
-            column;
-
-        gap:
-            10px;
-
-        margin-top:
-            25px;
-    }
-
-
-    button {
-
-        width:
-            100%;
-
-        padding:
-            14px 18px;
-
-        border:
-            none;
-
-        border-radius:
-            25px;
-
-        background:
-            linear-gradient(
-                135deg,
-                #e52b69,
-                #a9154d
-            );
-
-        color:
-            white;
-
-        font-size:
-            16px;
-
-        font-weight:
-            bold;
-
-        cursor:
-            pointer;
-
-        transition:
-            0.25s;
-    }
-
-
-    button:hover {
-
-        transform:
-            scale(1.03);
-
-        box-shadow:
-            0 8px 25px
-            rgba(
-                229,
-                43,
-                105,
-                0.3
-            );
-    }
-
-
-    .soft {
-
-        background:
-            rgba(
-                255,
-                255,
-                255,
-                0.07
-            );
-
-        border:
-            1px solid
-            rgba(
-                255,
-                150,
-                190,
-                0.2
-            );
-
-        color:
-            #ffc6d9;
-    }
-
-
-    .small {
-
-        color:
-            #8ca293;
-
-        font-size:
-            13px;
-    }
-
-
-    @keyframes appear {
-
-        from {
-
-            opacity:
-                0;
-
-            transform:
-                translateY(15px)
-                scale(0.98);
+        * {
+            box-sizing: border-box;
         }
 
-        to {
-
-            opacity:
-                1;
-
-            transform:
-                translateY(0)
-                scale(1);
+        html,
+        body {
+            margin: 0;
+            min-height: 100%;
         }
-    }
 
+        body {
+            min-height: 100vh;
+            padding: 20px;
 
-    @media (max-width: 500px) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                #030604;
+
+            color: #d8ffe5;
+
+            transition:
+                background 1.5s ease,
+                color 1.5s ease;
+        }
+
+        /* =========================
+           TECH MODE
+        ========================= */
+
+        body.tech-mode {
+            background:
+                radial-gradient(
+                    circle at top,
+                    #10351e 0%,
+                    #06130b 45%,
+                    #020403 100%
+                );
+        }
+
+        /* =========================
+           LOVE MODE
+        ========================= */
+
+        body.love-mode {
+            background:
+                radial-gradient(
+                    circle at top,
+                    #5b1737 0%,
+                    #280b1b 45%,
+                    #10050d 100%
+                );
+
+            color: #ffffff;
+        }
+
+        /* =========================
+           MAIN CARD
+        ========================= */
 
         .card {
+            width: 100%;
+            max-width: 560px;
+            min-height: 570px;
 
-            min-height:
-                600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 35px 28px;
+
+            background:
+                rgba(4, 12, 7, 0.97);
+
+            border:
+                1px solid
+                rgba(63, 255, 125, 0.25);
+
+            border-radius: 25px;
+
+            text-align: center;
+
+            box-shadow:
+                0 25px 70px
+                rgba(0, 0, 0, 0.7);
+
+            transition:
+                background 1.5s ease,
+                border 1.5s ease,
+                box-shadow 1.5s ease;
+        }
+
+        body.love-mode .card {
+            background:
+                rgba(30, 7, 20, 0.97);
+
+            border:
+                1px solid
+                rgba(255, 110, 160, 0.28);
+
+            box-shadow:
+                0 25px 70px
+                rgba(0, 0, 0, 0.65),
+
+                0 0 45px
+                rgba(220, 30, 100, 0.12);
+        }
+
+        /* =========================
+           SCREENS
+        ========================= */
+
+        .screen {
+            width: 100%;
+
+            animation:
+                appear 0.5s ease;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes appear {
+
+            from {
+                opacity: 0;
+                transform:
+                    translateY(15px)
+                    scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+
+        }
+
+        /* =========================
+           TECH MODE
+        ========================= */
+
+        .tech-icon {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .tech-title {
+            margin:
+                5px 0 10px;
+
+            color: #55ff88;
+
+            font-size: 37px;
+
+            letter-spacing: 1px;
+        }
+
+        .tech-subtitle {
+            color: #8cffaa;
+
+            font-size: 18px;
+
+            margin-bottom: 25px;
+        }
+
+        .terminal {
+            margin:
+                20px 0;
+
+            padding: 15px;
+
+            text-align: left;
+
+            background:
+                #020604;
+
+            border:
+                1px solid
+                rgba(70, 255, 120, 0.2);
+
+            border-radius: 10px;
+
+            color:
+                #52ff82;
+
+            font-family:
+                "Courier New",
+                monospace;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+        .input-box {
+            width: 100%;
 
             padding:
-                25px 20px;
+                15px 18px;
+
+            margin-top: 10px;
+
+            background:
+                #020604;
+
+            border:
+                1px solid
+                rgba(70, 255, 120, 0.4);
+
+            border-radius: 10px;
+
+            outline: none;
+
+            color:
+                #8cffaa;
+
+            font-size: 17px;
+
+            text-align: center;
+        }
+
+        .input-box:focus {
+            border-color:
+                #55ff88;
+
+            box-shadow:
+                0 0 15px
+                rgba(70, 255, 120, 0.15);
+        }
+
+        .tech-button {
+            background:
+                #0a2915;
+
+            border:
+                1px solid
+                #35d96a;
+
+            color:
+                #7dff9e;
+        }
+
+        .tech-button:hover {
+            background:
+                #0f3b1d;
+
+            box-shadow:
+                0 0 20px
+                rgba(53, 217, 106, 0.2);
+        }
+
+        .progress {
+            width: 100%;
+
+            height: 12px;
+
+            margin:
+                25px 0;
+
+            background:
+                #071109;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+
+            width: 0%;
+
+            background:
+                #45e878;
+
+            transition:
+                width 0.7s ease;
+        }
+
+        /* =========================
+           LOVE MODE
+        ========================= */
+
+        .emoji {
+            font-size: 56px;
+
+            margin-bottom: 10px;
         }
 
         h1 {
+            margin:
+                5px 0 12px;
 
-            font-size:
-                35px;
+            font-size: 40px;
+
+            color:
+                #ff709f;
         }
 
         h2 {
+            margin:
+                8px 0 22px;
 
-            font-size:
-                24px;
+            font-size: 27px;
+
+            color:
+                #ff9abb;
         }
 
         p {
+            margin:
+                12px 0;
 
-            font-size:
-                17px;
+            font-size: 18px;
+
+            line-height: 1.6;
+
+            color:
+                #f0dbe4;
         }
 
-        .emoji {
+        .highlight {
+            color:
+                #ff87ae;
+
+            font-size: 21px;
+
+            font-weight:
+                bold;
+        }
+
+        .hadith {
+            margin:
+                20px 0;
+
+            padding:
+                18px;
+
+            border-left:
+                3px solid
+                #ff709f;
+
+            background:
+                rgba(
+                    255,
+                    100,
+                    150,
+                    0.06
+                );
+
+            border-radius:
+                12px;
+
+            color:
+                #ffd4e1;
 
             font-size:
-                50px;
-        }
-    }
+                16px;
 
-</style>
+            line-height:
+                1.6;
+        }
+
+        .source {
+            margin-top:
+                10px;
+
+            color:
+                #aa8c99;
+
+            font-size:
+                13px;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .choices {
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                10px;
+
+            margin-top:
+                25px;
+        }
+
+        button {
+            width: 100%;
+
+            padding:
+                14px 18px;
+
+            border:
+                none;
+
+            border-radius:
+                25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e52b69,
+                    #a9154d
+                );
+
+            color:
+                white;
+
+            font-size:
+                16px;
+
+            font-weight:
+                bold;
+
+            cursor:
+                pointer;
+
+            transition:
+                0.25s;
+        }
+
+        button:hover {
+            transform:
+                scale(1.03);
+
+            box-shadow:
+                0 8px 25px
+                rgba(
+                    229,
+                    43,
+                    105,
+                    0.3
+                );
+        }
+
+        .soft {
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.07
+                );
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    150,
+                    190,
+                    0.2
+                );
+
+            color:
+                #ffc6d9;
+        }
+
+        .small {
+            color:
+                #8ca293;
+
+            font-size:
+                13px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 500px) {
+
+            body {
+                padding:
+                    12px;
+            }
+
+            .card {
+                min-height:
+                    600px;
+
+                padding:
+                    27px 19px;
+
+                border-radius:
+                    20px;
+            }
+
+            h1 {
+                font-size:
+                    34px;
+            }
+
+            h2 {
+                font-size:
+                    24px;
+            }
+
+            p {
+                font-size:
+                    17px;
+            }
+
+            .emoji {
+                font-size:
+                    50px;
+            }
+
+            .tech-title {
+                font-size:
+                    30px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
+
 <body class="tech-mode">
+
 
 <div class="card">
 
-<!-- =========================
-     TECH SCREEN 1
-========================= -->
 
-<div
-    id="tech1"
-    class="screen"
->
+    <!-- =================================
+         TECH 1 — NAME
+    ================================== -->
 
-    <div class="tech-icon">
-        🖥️
-    </div>
-
-    <h1 class="tech-title">
-        NETWORK DIAGNOSTICS
-    </h1>
-
-    <p class="tech-subtitle">
-        Secure Connection Assessment
-    </p>
-
-    <div class="terminal">
-
-        > Initialising system...<br>
-
-        > Checking network environment...<br>
-
-        > Connection required...
-
-    </div>
-
-    <p>
-        Please enter your first name
-        to continue.
-    </p>
-
-    <input
-        id="firstName"
-        class="input-box"
-        type="text"
-        placeholder="Enter first name"
-        maxlength="30"
-        autocomplete="off"
+    <div
+        id="tech1"
+        class="screen"
     >
 
-    <div class="choices">
+        <div class="tech-icon">
+            🖥️
+        </div>
 
-        <button
-            class="tech-button"
-            onclick="saveName()"
+        <h1 class="tech-title">
+            NETWORK DIAGNOSTICS
+        </h1>
+
+        <p class="tech-subtitle">
+            Secure Connection Assessment
+        </p>
+
+        <div class="terminal">
+
+            > Initialising system...<br>
+            > Checking network environment...<br>
+            > Connection required...
+
+        </div>
+
+        <p>
+            Please enter your first name
+            to continue.
+        </p>
+
+        <input
+            id="firstName"
+            class="input-box"
+            type="text"
+            placeholder="Enter first name"
+            maxlength="30"
+            autocomplete="off"
         >
-            Continue →
-        </button>
+
+        <div class="choices">
+
+            <button
+                class="tech-button"
+                onclick="saveName()"
+            >
+                Continue →
+            </button>
+
+        </div>
+
+        <p class="small">
+            Information stays in this browser.
+        </p>
 
     </div>
 
-    <p class="small">
-        Information stays in this browser.
-    </p>
 
-</div>
+    <!-- =================================
+         TECH 2 — ROUTER
+    ================================== -->
+
+    <div
+        id="tech2"
+        class="screen hidden"
+    >
+
+        <div class="tech-icon">
+            📡
+        </div>
+
+        <h1 class="tech-title">
+            CONNECTION CHECK
+        </h1>
+
+        <p>
+            Do you own a router?
+        </p>
+
+        <div class="choices">
+
+            <button
+                class="tech-button"
+                onclick="showTech('tech3')"
+            >
+                Yes
+            </button>
+
+            <button
+                class="tech-button"
+                onclick="showTech('tech3')"
+            >
+                No
+            </button>
 
-
-<!-- =========================
-     TECH SCREEN 2
-========================= -->
-
-<div
-    id="tech2"
-    class="screen hidden"
->
-
-    <div class="tech-icon">
-        📡
-    </div>
-
-    <h1 class="tech-title">
-        CONNECTION CHECK
-    </h1>
-
-    <p>
-        Do you own a router?
-    </p>
-
-    <div class="choices">
-
-        <button
-            class="tech-button"
-            onclick="showTech('tech3')"
-        >
-            Yes
-        </button>
-
-        <button
-            class="tech-button"
-            onclick="showTech('tech3')"
-        >
-            No
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     TECH SCREEN 3
-========================= -->
-
-<div
-    id="tech3"
-    class="screen hidden"
->
-
-    <div class="tech-icon">
-        📶
-    </div>
-
-    <h1 class="tech-title">
-        NETWORK TEST
-    </h1>
-
-    <p>
-        Are you currently connected
-        to Wi-Fi?
-    </p>
-
-    <div class="choices">
-
-        <button
-            class="tech-button"
-            onclick="showTech('tech4')"
-        >
-            Yes
-        </button>
-
-        <button
-            class="tech-button"
-            onclick="showTech('tech4')"
-        >
-            No
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     TECH SCREEN 4
-========================= -->
-
-<div
-    id="tech4"
-    class="screen hidden"
->
-
-    <div class="tech-icon">
-        🔍
-    </div>
-
-    <h1 class="tech-title">
-        FINAL CHECK
-    </h1>
-
-    <p>
-        Is your internet connection
-        working normally?
-    </p>
-
-    <div class="choices">
-
-        <button
-            class="tech-button"
-            onclick="runDiagnostic()"
-        >
-            Yes
-        </button>
-
-        <button
-            class="tech-button"
-            onclick="runDiagnostic()"
-        >
-            No
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     TECH LOADING
-========================= -->
-
-<div
-    id="tech5"
-    class="screen hidden"
->
-
-    <div class="tech-icon">
-        ⚙️
-    </div>
-
-    <h1 class="tech-title">
-        RUNNING DIAGNOSTIC
-    </h1>
-
-    <div class="terminal">
-
-        > Analysing connection...<br>
-
-        > Checking network...<br>
-
-        > Checking router...<br>
-
-        > Checking signal...<br>
-
-        > Finalising...
-
-    </div>
-
-    <div class="progress">
-
-        <div
-            id="progressBar"
-            class="progress-bar"
-        ></div>
-
-    </div>
-
-    <p id="progressText">
-        Please wait...
-    </p>
-
-</div>
-
-
-<!-- =========================
-     REVEAL
-========================= -->
-
-<div
-    id="reveal"
-    class="screen hidden"
->
-
-    <div class="tech-icon">
-        ⚠️
-    </div>
-
-    <h1 class="tech-title">
-        DIAGNOSTIC COMPLETE
-    </h1>
-
-    <div class="terminal">
-
-        > Network: OK<br>
-
-        > Router: OK<br>
-
-        > Connection: OK<br>
-
-        > Unexpected result detected...
-
-    </div>
-
-    <p>
-        <strong>
-            <span id="nameReveal"></span>
-        </strong>,
-        please don't close this yet.
-    </p>
-
-    <p>
-        For the sake of Allah,
-        just give me one minute.
-    </p>
-
-    <div class="choices">
-
-        <button
-            class="tech-button"
-            onclick="startApology()"
-        >
-            Continue
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     LOVE SCREEN 1
-========================= -->
-
-<div
-    id="s1"
-    class="screen hidden"
->
-
-    <div class="emoji">🥺</div>
-
-    <h1>I'm Sorry</h1>
-
-    <h2>
-        <span class="herName"></span>,
-        my love ❤️
-    </h2>
-
-    <p>
-        I need to admit something,
-        darling.
-    </p>
-
-    <p>
-        And for the sake of Allah,
-        please don't close this yet.
-    </p>
-
-    <p class="highlight">
-        I was wrong.
-    </p>
-
-    <p class="highlight">
-        You were right.
-    </p>
-
-    <div class="choices">
-
-        <button onclick="show('s2')">
-            Okay... go on babe ❤️
-        </button>
-
-        <button
-            class="soft"
-            onclick="show('s2')"
-        >
-            Hmm... I'm listening 🙄
-        </button>
-
-        <button
-            class="soft"
-            onclick="show('s2')"
-        >
-            What are you trying to say? 👀
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     LOVE SCREEN 2
-========================= -->
-
-<div
-    id="s2"
-    class="screen hidden"
->
-
-    <div class="emoji">🥹</div>
-
-    <h2>
-        You opened my eyes.
-    </h2>
-
-    <p>
-        Yesterday made me think
-        about everything properly.
-    </p>
-
-    <p>
-        And I finally understood
-        where you were coming from.
-    </p>
-
-    <div class="choices">
-
-        <button onclick="show('s3')">
-            I'm glad you understand ❤️
-        </button>
-
-        <button onclick="show('s3')">
-            Finally 😂
-        </button>
-
-        <button
-            class="soft"
-            onclick="show('s3')"
-        >
-            Took you long enough 🙄
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     LOVE SCREEN 3
-========================= -->
-
-<div
-    id="s3"
-    class="screen hidden"
->
-
-    <div class="emoji">😭</div>
-
-    <h2>
-        And honestly...
-    </h2>
-
-    <p class="highlight">
-        I miss you.
-    </p>
-
-    <p>
-        More than I want to admit.
-    </p>
-
-    <div class="choices">
-
-        <button onclick="show('s4')">
-            I miss you too ❤️
-        </button>
-
-        <button onclick="show('s4')">
-            Aww babe 🥺
-        </button>
-
-        <button
-            class="soft"
-            onclick="show('s4')"
-        >
-            I'm still annoyed 😒
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     LOVE SCREEN 4
-========================= -->
-
-<div
-    id="s4"
-    class="screen hidden"
->
-
-    <div class="emoji">💔</div>
-
-    <h2>
-        I don't want this.
-    </h2>
-
-    <p>
-        I don't want this problem
-        between us.
-    </p>
-
-    <p>
-        I don't want anything
-        coming between us.
-    </p>
-
-    <div class="choices">
-
-        <button onclick="show('s5')">
-            Me neither ❤️
-        </button>
-
-        <button onclick="show('s5')">
-            Then make it up to me 👀
-        </button>
-
-        <button
-            class="soft"
-            onclick="show('s7')"
-        >
-            I'm not ready yet 😒
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     LOVE SCREEN 5
-========================= -->
-
-<div
-    id="s5"
-    class="screen hidden"
->
-
-    <div class="emoji">🥺</div>
-
-    <h2>
-        I'm genuinely sorry.
-    </h2>
-
-    <p>
-        I should have listened.
-    </p>
-
-    <p>
-        I should have understood.
-    </p>
-
-    <p class="highlight">
-        I'm sorry, babe.
-    </p>
-
-    <div class="choices">
-
-        <button onclick="show('s6')">
-            Okay... ❤️
-        </button>
-
-        <button onclick="show('s6')">
-            Keep talking, darling 👀
-        </button>
-
-        <button
-            class="soft"
-            onclick="show('s7')"
-        >
-            I'm still mad 😒
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     LOVE SCREEN 6
-========================= -->
-
-<div
-    id="s6"
-    class="screen hidden"
->
-
-    <div class="emoji">🌹</div>
-
-    <h2>
-        What I really want...
-    </h2>
-
-    <p>
-        I love you so much.
-    </p>
-
-    <p>
-        I don't want pride or an
-        argument to keep us apart.
-    </p>
-
-    <p class="highlight">
-        I just want us to be okay again.
-    </p>
-
-    <div class="choices">
-
-        <button onclick="show('s9')">
-            I'm here ❤️
-        </button>
-
-        <button onclick="show('s9')">
-            Aww, babe 🥺
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     LOVE SCREEN 7
-========================= -->
-
-<div
-    id="s7"
-    class="screen hidden"
->
-
-    <div class="emoji">🥺</div>
-
-    <h2>
-        Are you still upset with me?
-    </h2>
-
-    <p>
-        I promise I mean it, love.
-    </p>
-
-    <p>
-        Let me make it right. 💕
-    </p>
-
-    <div class="choices">
-
-        <button onclick="show('s8')">
-            Yes, I am 😒
-        </button>
-
-        <button onclick="show('s8')">
-            Maybe a little 👀
-        </button>
-
-        <button onclick="show('s8')">
-            I'm listening 🙄
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     LOVE SCREEN 8
-========================= -->
-
-<div
-    id="s8"
-    class="screen hidden"
->
-
-    <div class="emoji">🥺</div>
-
-    <h2>
-        Then let me try again.
-    </h2>
-
-    <p>
-        No excuses.
-    </p>
-
-    <p>
-        No arguing.
-    </p>
-
-    <p class="highlight">
-        I was wrong.
-    </p>
-
-    <div class="choices">
-
-        <button onclick="show('s9')">
-            Okay... ❤️
-        </button>
-
-        <button onclick="show('s9')">
-            I'm listening, babe 👀
-        </button>
-
-        <button
-            class="soft"
-            onclick="show('s7')"
-        >
-            Still not convinced 🙄
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     LOVE SCREEN 9
-========================= -->
-
-<div
-    id="s9"
-    class="screen hidden"
->
-
-    <div class="emoji">🤲</div>
-
-    <h2>
-        One little reminder...
-    </h2>
-
-    <p>
-        I know I can't demand forgiveness
-        from you.
-    </p>
-
-    <div class="hadith">
-
-        “The merciful are shown mercy
-        by Ar-Rahman. Be merciful to
-        those on the earth and the One
-        above the heavens will have mercy
-        upon you.”
-
-        <div class="source">
-            Prophet Muhammad ﷺ —
-            Jami` at-Tirmidhi 1924
         </div>
 
     </div>
 
-    <p>
-        I'm not showing you that to
-        pressure you, darling.
-    </p>
 
-    <p>
-        I just hope we can have mercy
-        on each other and move forward.
-    </p>
+    <!-- =================================
+         TECH 3 — WIFI
+    ================================== -->
 
-    <div class="choices">
+    <div
+        id="tech3"
+        class="screen hidden"
+    >
 
-        <button onclick="show('s10')">
-            Maybe I can forgive you ❤️
-        </button>
+        <div class="tech-icon">
+            📶
+        </div>
 
-        <button onclick="show('s10')">
-            I'm thinking about it 🥺
-        </button>
+        <h1 class="tech-title">
+            NETWORK TEST
+        </h1>
 
-        <button
-            class="soft"
-            onclick="show('s7')"
-        >
-            Not yet 😒
-        </button>
+        <p>
+            Are you currently connected
+            to Wi-Fi?
+        </p>
 
-    </div>
+        <div class="choices">
 
-</div>
+            <button
+                class="tech-button"
+                onclick="showTech('tech4')"
+            >
+                Yes
+            </button>
 
+            <button
+                class="tech-button"
+                onclick="showTech('tech4')"
+            >
+                No
+            </button>
 
-<!-- =========================
-     LOVE SCREEN 10
-========================= -->
-
-<div
-    id="s10"
-    class="screen hidden"
->
-
-    <div class="emoji">🥺❤️</div>
-
-    <h1>
-        My love...
-    </h1>
-
-    <p>
-        I was wrong.
-    </p>
-
-    <p>
-        You were right.
-    </p>
-
-    <p>
-        You opened my eyes.
-    </p>
-
-    <p class="highlight">
-        And I miss you so much.
-    </p>
-
-    <h2>
-        Do you forgive me,
-        my love? ❤️
-    </h2>
-
-    <div class="choices">
-
-        <button onclick="show('s11')">
-            Yes ❤️
-        </button>
-
-        <button onclick="show('s11')">
-            Of course, babe 🥺
-        </button>
-
-        <button onclick="show('s11')">
-            Come here, darling 😭❤️
-        </button>
+        </div>
 
     </div>
 
-</div>
 
+    <!-- =================================
+         TECH 4 — CONNECTION
+    ================================== -->
 
-<!-- =========================
-     LOVE SCREEN 11
-========================= -->
+    <div
+        id="tech4"
+        class="screen hidden"
+    >
 
-<div
-    id="s11"
-    class="screen hidden"
->
+        <div class="tech-icon">
+            🔍
+        </div>
 
-    <div class="emoji">😭❤️</div>
+        <h1 class="tech-title">
+            FINAL CHECK
+        </h1>
 
-    <h1>
-        Thank you.
-    </h1>
+        <p>
+            Is your internet connection
+            working normally?
+        </p>
 
-    <p>
-        You don't know how happy
-        that makes me.
-    </p>
+        <div class="choices">
 
-    <p class="highlight">
-        I love you so much,
-        my darling.
-    </p>
+            <button
+                class="tech-button"
+                onclick="runDiagnostic()"
+            >
+                Yes
+            </button>
 
-    <p>
-        But there's one more thing
-        I want...
-    </p>
+            <button
+                class="tech-button"
+                onclick="runDiagnostic()"
+            >
+                No
+            </button>
 
-    <div class="choices">
-
-        <button onclick="show('s12')">
-            What? 👀
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     LOVE SCREEN 12
-========================= -->
-
-<div
-    id="s12"
-    class="screen hidden"
->
-
-    <div class="emoji">📱❤️</div>
-
-    <h2>
-        FaceTime me?
-    </h2>
-
-    <p>
-        I miss seeing your face.
-    </p>
-
-    <p>
-        I miss hearing your voice.
-    </p>
-
-    <p>
-        I miss our random FaceTimes,
-        our conversations and just
-        having you there.
-    </p>
-
-    <p class="highlight">
-        I don't want to keep this
-        between messages.
-    </p>
-
-    <div class="choices">
-
-        <button onclick="show('s13')">
-            Yes, call me babe ❤️
-        </button>
-
-        <button onclick="show('s13')">
-            I suppose... 🥺
-        </button>
-
-        <button
-            class="soft"
-            onclick="show('s13')"
-        >
-            You really want to FaceTime? 🙄
-        </button>
+        </div>
 
     </div>
 
-</div>
 
+    <!-- =================================
+         TECH 5 — LOADING
+    ================================== -->
 
-<!-- =========================
-     LOVE SCREEN 13
-========================= -->
+    <div
+        id="tech5"
+        class="screen hidden"
+    >
 
-<div
-    id="s13"
-    class="screen hidden"
->
+        <div class="tech-icon">
+            ⚙️
+        </div>
 
-    <div class="emoji">🥹❤️</div>
+        <h1 class="tech-title">
+            RUNNING DIAGNOSTIC
+        </h1>
 
-    <h1>
-        Come here, darling.
-    </h1>
+        <div class="terminal">
 
-    <p>
-        I just want to see you.
-    </p>
+            > Analysing connection...<br>
+            > Checking network...<br>
+            > Checking router...<br>
+            > Checking signal...<br>
+            > Finalising...
 
-    <p>
-        Talk to you properly.
-    </p>
+        </div>
 
-    <p>
-        Hear your voice.
-    </p>
+        <div class="progress">
 
-    <p class="highlight">
-        And hopefully hear you say...
-    </p>
+            <div
+                id="progressBar"
+                class="progress-bar"
+            ></div>
 
-    <h2>
-        “It's okay, my love.” ❤️
-    </h2>
+        </div>
 
-    <div class="choices">
-
-        <button onclick="show('s14')">
-            I'll FaceTime you ❤️
-        </button>
-
-        <button onclick="show('s14')">
-            Fine, babe 😂
-        </button>
+        <p id="progressText">
+            Please wait...
+        </p>
 
     </div>
 
+
+    <!-- =================================
+         REVEAL
+    ================================== -->
+
+    <div
+        id="reveal"
+        class="screen hidden"
+    >
+
+        <div class="tech-icon">
+            ⚠️
+        </div>
+
+        <h1 class="tech-title">
+            DIAGNOSTIC COMPLETE
+        </h1>
+
+        <div class="terminal">
+
+            > Network: OK<br>
+            > Router: OK<br>
+            > Connection: OK<br>
+            > Unexpected result detected...
+
+        </div>
+
+        <p>
+            <strong>
+                <span id="nameReveal"></span>
+            </strong>,
+            please don't close this yet.
+        </p>
+
+        <p>
+            For the sake of Allah,
+            just give me one minute.
+        </p>
+
+        <div class="choices">
+
+            <button
+                class="tech-button"
+                onclick="startApology()"
+            >
+                Continue
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         LOVE 1 — I'M SORRY
+    ================================== -->
+
+    <div
+        id="s1"
+        class="screen hidden"
+    >
+
+        <div class="emoji">
+            🥺
+        </div>
+
+        <h1>
+            I'm Sorry
+        </h1>
+
+        <h2>
+            <span class="herName"></span>,
+            my love ❤️
+        </h2>
+
+        <p>
+            I need to admit something,
+            darling.
+        </p>
+
+        <p>
+            And for the sake of Allah,
+            please don't close this yet.
+        </p>
+
+        <p class="highlight">
+            I was wrong.
+        </p>
+
+        <p class="highlight">
+            You were right.
+        </p>
+
+        <div class="choices">
+
+            <button onclick="show('s2')">
+                Okay... go on babe ❤️
+            </button>
+
+            <button
+                class="soft"
+                onclick="show('s2')"
+            >
+                Hmm... I'm listening 🙄
+            </button>
+
+            <button
+                class="soft"
+                onclick="show('s2')"
+            >
+                What are you trying to say? 👀
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         LOVE 2 — OPENED MY EYES
+    ================================== -->
+
+    <div
+        id="s2"
+        class="screen hidden"
+    >
+
+        <div class="emoji">
+            🥹
+        </div>
+
+        <h2>
+            You opened my eyes.
+        </h2>
+
+        <p>
+            Yesterday made me think
+            about everything properly.
+        </p>
+
+        <p>
+            And I finally understood
+            where you were coming from.
+        </p>
+
+        <div class="choices">
+
+            <button onclick="show('s3')">
+                I'm glad you understand ❤️
+            </button>
+
+            <button onclick="show('s3')">
+                Finally 😂
+            </button>
+
+            <button
+                class="soft"
+                onclick="show('s3')"
+            >
+                Took you long enough 🙄
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         LOVE 3 — I MISS YOU
+    ================================== -->
+
+    <div
+        id="s3"
+        class="screen hidden"
+    >
+
+        <div class="emoji">
+            😭
+        </div>
+
+        <h2>
+            And honestly...
+        </h2>
+
+        <p class="highlight">
+            I miss you.
+        </p>
+
+        <p>
+            More than I want to admit.
+        </p>
+
+        <div class="choices">
+
+            <button onclick="show('s4')">
+                I miss you too ❤️
+            </button>
+
+            <button onclick="show('s4')">
+                Aww babe 🥺
+            </button>
+
+            <button
+                class="soft"
+                onclick="show('s4')"
+            >
+                Okay... I'm listening ❤️
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         LOVE 4 — I DON'T WANT THIS
+    ================================== -->
+
+    <div
+        id="s4"
+        class="screen hidden"
+    >
+
+        <div class="emoji">
+            💔
+        </div>
+
+        <h2>
+            I don't want this.
+        </h2>
+
+        <p>
+            I don't want this problem
+            between us.
+        </p>
+
+        <p>
+            I don't want anything
+            coming between us.
+        </p>
+
+        <div class="choices">
+
+            <button onclick="show('s5')">
+                Me neither ❤️
+            </button>
+
+            <button onclick="show('s5')">
+                Then make it up to me 👀
+            </button>
+
+            <button
+                class="soft"
+                onclick="show('s5')"
+            >
+                Okay... keep going, babe ❤️
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         LOVE 5 — GENUINELY SORRY
+    ================================== -->
+
+    <div
+        id="s5"
+        class="screen hidden"
+    >
+
+        <div class="emoji">
+            🥺
+        </div>
+
+        <h2>
+            I'm genuinely sorry.
+        </h2>
+
+        <p>
+            I should have listened.
+        </p>
+
+        <p>
+            I should have understood.
+        </p>
+
+        <p class="highlight">
+            I'm sorry, babe.
+        </p>
+
+        <div class="choices">
+
+            <button onclick="show('s6')">
+                Okay... ❤️
+            </button>
+
+            <button onclick="show('s6')">
+                Keep talking, darling 👀
+            </button>
+
+            <button
+                class="soft"
+                onclick="show('s6')"
+            >
+                I'm listening, love ❤️
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         LOVE 6 — WHAT I WANT
+    ================================== -->
+
+    <div
+        id="s6"
+        class="screen hidden"
+    >
+
+        <div class="emoji">
+            🌹
+        </div>
+
+        <h2>
+            What I really want...
+        </h2>
+
+        <p>
+            I love you so much.
+        </p>
+
+        <p>
+            I don't want pride or an
+            argument to keep us apart.
+        </p>
+
+        <p class="highlight">
+            I just want us to be okay again.
+        </p>
+
+        <div class="choices">
+
+            <button onclick="show('s7')">
+                I'm here ❤️
+            </button>
+
+            <button onclick="show('s7')">
+                Aww, babe 🥺
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         LOVE 7 — MERCY
+    ================================== -->
+
+    <div
+        id="s7"
+        class="screen hidden"
+    >
+
+        <div class="emoji">
+            🤲
+        </div>
+
+        <h2>
+            One little reminder...
+        </h2>
+
+        <p>
+            I know I can't demand forgiveness
+            from you.
+        </p>
+
+        <div class="hadith">
+
+            “The merciful are shown mercy
+            by Ar-Rahman. Be merciful to
+            those on the earth and the One
+            above the heavens will have mercy
+            upon you.”
+
+            <div class="source">
+                Prophet Muhammad ﷺ —
+                Jami` at-Tirmidhi 1924
+            </div>
+
+        </div>
+
+        <p>
+            I'm not showing you that to
+            pressure you, darling.
+        </p>
+
+        <p>
+            I just hope we can have mercy
+            on each other and move forward.
+        </p>
+
+        <div class="choices">
+
+            <button onclick="show('s8')">
+                Maybe I can forgive you ❤️
+            </button>
+
+            <button onclick="show('s8')">
+                I'm thinking about it 🥺
+            </button>
+
+            <button
+                class="soft"
+                onclick="show('s8')"
+            >
+                I hear you, darling ❤️
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         LOVE 8 — FORGIVENESS
+    ================================== -->
+
+    <div
+        id="s8"
+        class="screen hidden"
+    >
+
+        <div class="emoji">
+            🥺❤️
+        </div>
+
+        <h1>
+            My love...
+        </h1>
+
+        <p>
+            I was wrong.
+        </p>
+
+        <p>
+            You were right.
+        </p>
+
+        <p>
+            You opened my eyes.
+        </p>
+
+        <p class="highlight">
+            And I miss you so much.
+        </p>
+
+        <h2>
+            Do you forgive me,
+            my love? ❤️
+        </h2>
+
+        <div class="choices">
+
+            <button onclick="show('s9')">
+                Yes ❤️
+            </button>
+
+            <button onclick="show('s9')">
+                Of course, babe 🥺
+            </button>
+
+            <button onclick="show('s9')">
+                Come here, darling 😭❤️
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         LOVE 9 — THANK YOU / MOVE ON
+    ================================== -->
+
+    <div
+        id="s9"
+        class="screen hidden"
+    >
+
+        <div class="emoji">
+            😭❤️
+        </div>
+
+        <h1>
+            Thank you.
+        </h1>
+
+        <p>
+            You don't know how happy
+            that makes me.
+        </p>
+
+        <p class="highlight">
+            I love you so much,
+            my darling.
+        </p>
+
+        <p>
+            Okay...
+        </p>
+
+        <p class="highlight">
+            That's enough about yesterday. ❤️
+        </p>
+
+        <p>
+            We've said what needed to be said,
+            and I don't want to keep bringing
+            it back up.
+        </p>
+
+        <p>
+            I know I was wrong.
+            You opened my eyes.
+            And I'm genuinely sorry.
+        </p>
+
+        <div class="choices">
+
+            <button onclick="show('s10')">
+                Okay... what now? 👀
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         LOVE 10 — MAKE HER SMILE
+    ================================== -->
+
+    <div
+        id="s10"
+        class="screen hidden"
+    >
+
+        <div class="emoji">
+            🥹❤️
+        </div>
+
+        <h1>
+            One more mission...
+        </h1>
+
+        <p>
+            No more serious stuff.
+        </p>
+
+        <p>
+            No more talking about yesterday.
+        </p>
+
+        <p class="highlight">
+            I just want my normal you back.
+        </p>
+
+        <p>
+            Your smile.
+        </p>
+
+        <p>
+            Your laugh.
+        </p>
+
+        <p>
+            Your random comments.
+        </p>
+
+        <p>
+            Just you being you. ❤️
+        </p>
+
+        <div class="choices">
+
+            <button onclick="show('s11')">
+                You better make me smile 😂
+            </button>
+
+            <button onclick="show('s11')">
+                Go on then, babe 👀
+            </button>
+
+            <button
+                class="soft"
+                onclick="show('s11')"
+            >
+                I'm waiting... 🙄❤️
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         LOVE 11 — PLAYFUL
+    ================================== -->
+
+    <div
+        id="s11"
+        class="screen hidden"
+    >
+
+        <div class="emoji">
+            😂❤️
+        </div>
+
+        <h2>
+            Okay, okay...
+        </h2>
+
+        <p>
+            Forget the arguments.
+        </p>
+
+        <p>
+            I just want to see that
+            beautiful smile again.
+        </p>
+
+        <p class="highlight">
+            So I have one very important
+            question...
+        </p>
+
+        <h2>
+            Who loves who more? 👀
+        </h2>
+
+        <div class="choices">
+
+            <button onclick="show('s12')">
+                Me, obviously 😂
+            </button>
+
+            <button onclick="show('s12')">
+                You do ❤️
+            </button>
+
+            <button
+                class="soft"
+                onclick="show('s12')"
+            >
+                We're not starting this argument again 🙄
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         LOVE 12 — SMILE
+    ================================== -->
+
+    <div
+        id="s12"
+        class="screen hidden"
+    >
+
+        <div class="emoji">
+            🥹❤️
+        </div>
+
+        <h1>
+            There she is.
+        </h1>
+
+        <p class="highlight">
+            That's the smile I was looking for.
+        </p>
+
+        <p>
+            That's all I wanted.
+        </p>
+
+        <p>
+            No more serious screens.
+            No more apologies.
+            No more overthinking.
+        </p>
+
+        <p class="highlight">
+            Just you being you. ❤️
+        </p>
+
+        <h2>
+            Now please smile for me. 🥺❤️
+        </h2>
+
+        <div class="choices">
+
+            <button onclick="show('s13')">
+                Fineee 😂❤️
+            </button>
+
+            <button onclick="show('s13')">
+                I'm smiling, idiot 😭
+            </button>
+
+            <button onclick="show('s13')">
+                You got me 🥺❤️
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         LOVE 13 — FINAL
+    ================================== -->
+
+    <div
+        id="s13"
+        class="screen hidden"
+    >
+
+        <div class="emoji">
+            ❤️
+        </div>
+
+        <h1>
+            That's my girl. 🥹❤️
+        </h1>
+
+        <p>
+            That's the smile I wanted to see.
+        </p>
+
+        <p>
+            We've said what needed to be said.
+        </p>
+
+        <p>
+            Now let's leave yesterday where
+            it belongs and just be us again.
+        </p>
+
+        <p class="highlight">
+            I love you, darling.
+        </p>
+
+        <p>
+            Now come here and smile for me. 😂❤️
+        </p>
+
+    </div>
+
+
 </div>
 
-
-<!-- =========================
-     LOVE SCREEN 14
-========================= -->
-
-<div
-    id="s14"
-    class="screen hidden"
->
-
-    <div class="emoji">❤️</div>
-
-    <h1>
-        Okay, my love.
-    </h1>
-
-    <p>
-        No more arguing.
-    </p>
-
-    <p>
-        No more overthinking.
-    </p>
-
-    <p>
-        Just you and me.
-    </p>
-
-    <p class="highlight">
-        I'll see you on FaceTime. 🥺❤️
-    </p>
-
-    <p>
-        I love you, darling.
-    </p>
-
-</div>
-
-</div>
 
 <script>
 
-
-    /* =========================
-       STORE NAME LOCALLY
-    ========================= */
+    /* =================================
+       SAVE HER FIRST NAME
+    ================================== */
 
     function saveName() {
 
@@ -1612,50 +1588,60 @@
         );
 
         document
-            .getElementById("nameReveal")
-            .textContent = name;
+            .getElementById(
+                "nameReveal"
+            )
+            .textContent =
+            name;
 
         document
-            .querySelectorAll(".herName")
-            .forEach(function(element) {
+            .querySelectorAll(
+                ".herName"
+            )
+            .forEach(
+                function(element) {
 
-                element.textContent =
-                    name;
+                    element.textContent =
+                        name;
 
-            });
+                }
+            );
 
         showTech("tech2");
     }
 
 
-    /* =========================
-       SHOW TECH SCREENS
-    ========================= */
+    /* =================================
+       TECH SCREEN NAVIGATION
+    ================================== */
 
     function showTech(id) {
 
         document
-            .querySelectorAll(".screen")
-            .forEach(function(screen) {
+            .querySelectorAll(
+                ".screen"
+            )
+            .forEach(
+                function(screen) {
 
-                screen.classList.add(
-                    "hidden"
-                );
+                    screen.classList.add(
+                        "hidden"
+                    );
 
-            });
+                }
+            );
 
         document
             .getElementById(id)
             .classList.remove(
                 "hidden"
             );
-
     }
 
 
-    /* =========================
-       RUN FAKE DIAGNOSTIC
-    ========================= */
+    /* =================================
+       DIAGNOSTIC ANIMATION
+    ================================== */
 
     function runDiagnostic() {
 
@@ -1671,53 +1657,82 @@
                 "progressText"
             );
 
-        setTimeout(function() {
+        bar.style.width = "0%";
 
-            bar.style.width = "35%";
+        text.textContent =
+            "Please wait...";
 
-            text.textContent =
-                "Checking network...";
 
-        }, 300);
+        setTimeout(
+            function() {
 
-        setTimeout(function() {
+                bar.style.width =
+                    "30%";
 
-            bar.style.width = "65%";
+                text.textContent =
+                    "Checking network...";
 
-            text.textContent =
-                "Checking router...";
+            },
+            300
+        );
 
-        }, 900);
 
-        setTimeout(function() {
+        setTimeout(
+            function() {
 
-            bar.style.width = "90%";
+                bar.style.width =
+                    "55%";
 
-            text.textContent =
-                "Finalising diagnostic...";
+                text.textContent =
+                    "Checking router...";
 
-        }, 1500);
+            },
+            900
+        );
 
-        setTimeout(function() {
 
-            bar.style.width = "100%";
+        setTimeout(
+            function() {
 
-            text.textContent =
-                "Diagnostic complete.";
+                bar.style.width =
+                    "80%";
 
-        }, 2100);
+                text.textContent =
+                    "Checking signal...";
 
-        setTimeout(function() {
+            },
+            1500
+        );
 
-            showTech("reveal");
 
-        }, 2900);
+        setTimeout(
+            function() {
+
+                bar.style.width =
+                    "100%";
+
+                text.textContent =
+                    "Diagnostic complete.";
+
+            },
+            2100
+        );
+
+
+        setTimeout(
+            function() {
+
+                showTech("reveal");
+
+            },
+            2900
+        );
     }
 
 
-    /* =========================
+    /* =================================
        SWITCH TO LOVE MODE
-    ========================= */
+    ================================== */
 
     function startApology() {
 
@@ -1730,25 +1745,28 @@
         );
 
         show("s1");
-
     }
 
 
-    /* =========================
-       SHOW LOVE SCREENS
-    ========================= */
+    /* =================================
+       LOVE SCREEN NAVIGATION
+    ================================== */
 
     function show(id) {
 
         document
-            .querySelectorAll(".screen")
-            .forEach(function(screen) {
+            .querySelectorAll(
+                ".screen"
+            )
+            .forEach(
+                function(screen) {
 
-                screen.classList.add(
-                    "hidden"
-                );
+                    screen.classList.add(
+                        "hidden"
+                    );
 
-            });
+                }
+            );
 
         const next =
             document.getElementById(id);
@@ -1761,10 +1779,36 @@
 
         }
 
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     }
 
 
+    /* =================================
+       ALLOW ENTER KEY FOR NAME
+    ================================== */
+
+    document
+        .getElementById("firstName")
+        .addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Enter"
+                ) {
+
+                    saveName();
+
+                }
+
+            }
+        );
+
 </script>
+
 
 </body>
 
