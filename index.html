@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>For My Love ❤️</title>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 20px;
+
+        font-family: Arial, sans-serif;
+
+        background:
+            radial-gradient(
+                circle at 50% 0%,
+                #5b1737 0%,
+                #260b1a 40%,
+                #10050c 100%
+            );
+
+        color: white;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 560px;
+
+        min-height: 570px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 35px 30px;
+
+        background: rgba(30, 7, 20, 0.97);
+
+        border: 1px solid rgba(255, 110, 160, 0.3);
+
+        border-radius: 30px;
+
+        box-shadow:
+            0 25px 70px rgba(0, 0, 0, 0.65),
+            0 0 40px rgba(220, 30, 100, 0.12);
+
+        text-align: center;
+    }
+
+    .screen {
+        width: 100%;
+        animation: appear 0.5s ease;
+    }
+
+    .emoji {
+        font-size: 58px;
+        margin-bottom: 10px;
+    }
+
+    h1 {
+        margin: 5px 0 12px;
+
+        font-size: 42px;
+
+        color: #ff709f;
+    }
+
+    h2 {
+        margin: 8px 0 22px;
+
+        font-size: 27px;
+
+        color: #ff9abb;
+    }
+
+    p {
+        margin: 12px 0;
+
+        font-size: 18px;
+
+        line-height: 1.6;
+
+        color: #f0dbe4;
+    }
+
+    .highlight {
+        color: #ff87ae;
+
+        font-size: 21px;
+
+        font-weight: bold;
+    }
+
+    .hadith {
+        margin: 20px 0;
+
+        padding: 18px;
+
+        border-left: 3px solid #ff709f;
+
+        background: rgba(255, 100, 150, 0.06);
+
+        border-radius: 12px;
+
+        color: #ffd4e1;
+
+        font-size: 16px;
+
+        line-height: 1.6;
+    }
+
+    .source {
+        margin-top: 10px;
+
+        color: #aa8c99;
+
+        font-size: 13px;
+    }
+
+    .choices {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 10px;
+
+        margin-top: 25px;
+    }
+
+    button {
+        width: 100%;
+
+        padding: 14px 18px;
+
+        border: none;
+
+        border-radius: 25px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #e52b69,
+                #a9154d
+            );
+
+        color: white;
+
+        font-size: 16px;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+        transition: 0.25s;
+    }
+
+    button:hover {
+        transform: scale(1.03);
+
+        box-shadow:
+            0 8px 25px
+            rgba(229, 43, 105, 0.3);
+    }
+
+    .soft {
+        background: rgba(255, 255, 255, 0.07);
+
+        border:
+            1px solid
+            rgba(255, 150, 190, 0.2);
+
+        color: #ffc6d9;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .small {
+        color: #a98e9b;
+
+        font-size: 14px;
+    }
+
+    @keyframes appear {
+
+        from {
+            opacity: 0;
+
+            transform:
+                translateY(15px)
+                scale(0.98);
+        }
+
+        to {
+            opacity: 1;
+
+            transform:
+                translateY(0)
+                scale(1);
+        }
+    }
+
+    @media (max-width: 500px) {
+
+        .card {
+            min-height: 600px;
+
+            padding: 25px 20px;
+        }
+
+        h1 {
+            font-size: 35px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        p {
+            font-size: 17px;
+        }
+
+        .emoji {
+            font-size: 50px;
+        }
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+<div class="card">
+
+
+<!-- 1 -->
+
+<div id="s1" class="screen">
+
+    <div class="emoji">🥺</div>
+
+    <h1>I'm Sorry</h1>
+
+    <h2>My love ❤️</h2>
+
+    <p>
+        I need to admit something,
+        darling And for the sake of Allah don't close this please.
+    </p>
+
+    <p class="highlight">
+        I was wrong.
+    </p>
+
+    <p class="highlight">
+        You were right.
+    </p>
+
+    <div class="choices">
+
+        <button onclick="show('s2')">
+            Okay... go on babe ❤️
+        </button>
+
+        <button class="soft" onclick="show('s2')">
+            Hmm... I'm listening 🙄
+        </button>
+
+        <button class="soft" onclick="show('s2')">
+            What are you trying to say? 👀
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 2 -->
+
+<div id="s2" class="screen hidden">
+
+    <div class="emoji">🥹</div>
+
+    <h2>You opened my eyes.</h2>
+
+    <p>
+        Yesterday made me think
+        about everything properly.
+    </p>
+
+    <p>
+        And I finally understood
+        where you were coming from.
+    </p>
+
+    <div class="choices">
+
+        <button onclick="show('s3')">
+            I'm glad you understand ❤️
+        </button>
+
+        <button onclick="show('s3')">
+            Finally 😂
+        </button>
+
+        <button class="soft" onclick="show('s3')">
+            Took you long enough 🙄
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 3 -->
+
+<div id="s3" class="screen hidden">
+
+    <div class="emoji">😭</div>
+
+    <h2>And honestly...</h2>
+
+    <p class="highlight">
+        I miss you.
+    </p>
+
+    <p>
+        More than I want to admit.
+    </p>
+
+    <div class="choices">
+
+        <button onclick="show('s4')">
+            I miss you too ❤️
+        </button>
+
+        <button onclick="show('s4')">
+            Aww babe 🥺
+        </button>
+
+        <button class="soft" onclick="show('s4')">
+            I'm still annoyed 😒
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 4 -->
+
+<div id="s4" class="screen hidden">
+
+    <div class="emoji">💔</div>
+
+    <h2>I don't want this.</h2>
+
+    <p>
+        I don't want this problem
+        between us.
+    </p>
+
+    <p>
+        I don't want anything
+        coming between us.
+    </p>
+
+    <div class="choices">
+
+        <button onclick="show('s5')">
+            Me neither ❤️
+        </button>
+
+        <button onclick="show('s5')">
+            Then make it up to me 👀
+        </button>
+
+        <button class="soft" onclick="show('s7')">
+            I'm not ready yet 😒
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 5 -->
+
+<div id="s5" class="screen hidden">
+
+    <div class="emoji">🥺</div>
+
+    <h2>I'm genuinely sorry.</h2>
+
+    <p>
+        I should have listened.
+    </p>
+
+    <p>
+        I should have understood.
+    </p>
+
+    <p class="highlight">
+        I'm sorry, babe.
+    </p>
+
+    <div class="choices">
+
+        <button onclick="show('s6')">
+            Okay... ❤️
+        </button>
+
+        <button onclick="show('s6')">
+            Keep talking, darling 👀
+        </button>
+
+        <button class="soft" onclick="show('s7')">
+            I'm still mad 😒
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 6 -->
+
+<div id="s6" class="screen hidden">
+
+    <div class="emoji">🌹</div>
+
+    <h2>What I really want...</h2>
+
+    <p>
+        I love you so much.
+    </p>
+
+    <p>
+        I don't want pride or an
+        argument to keep us apart.
+    </p>
+
+    <p class="highlight">
+        I just want us to be okay again.
+    </p>
+
+    <div class="choices">
+
+        <button onclick="show('s9')">
+            I'm here ❤️
+        </button>
+
+        <button onclick="show('s9')">
+            Aww, babe 🥺
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 7 -->
+
+<div id="s7" class="screen hidden">
+
+    <div class="emoji">🙄</div>
+
+    <h2>You're still mad?</h2>
+
+    <p>
+        Okay, okay...
+    </p>
+
+    <p>
+        I deserve that one 😂
+    </p>
+
+    <div class="choices">
+
+        <button onclick="show('s8')">
+            Yes, I am 😒
+        </button>
+
+        <button onclick="show('s8')">
+            Maybe a little 👀
+        </button>
+
+        <button onclick="show('s8')">
+            I'm listening 🙄
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 8 -->
+
+<div id="s8" class="screen hidden">
+
+    <div class="emoji">🥺</div>
+
+    <h2>Then let me try again.</h2>
+
+    <p>
+        No excuses.
+    </p>
+
+    <p>
+        No arguing.
+    </p>
+
+    <p class="highlight">
+        I was wrong.
+    </p>
+
+    <div class="choices">
+
+        <button onclick="show('s9')">
+            Okay... ❤️
+        </button>
+
+        <button onclick="show('s9')">
+            I'm listening, babe 👀
+        </button>
+
+        <button class="soft" onclick="show('s7')">
+            Still not convinced 🙄
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 9 -->
+
+<div id="s9" class="screen hidden">
+
+    <div class="emoji">🤲</div>
+
+    <h2>One little reminder...</h2>
+
+    <p>
+        I know I can't demand forgiveness
+        from you.
+    </p>
+
+    <div class="hadith">
+
+        “The merciful are shown mercy
+        by Ar-Rahman. Be merciful to
+        those on the earth and the One
+        above the heavens will have mercy
+        upon you.”
+
+        <div class="source">
+            Prophet Muhammad ﷺ —
+            Jami` at-Tirmidhi 1924
+        </div>
+
+    </div>
+
+    <p>
+        I'm not showing you that to
+        pressure you, darling.
+    </p>
+
+    <p>
+        I just hope we can have mercy
+        on each other and move forward.
+    </p>
+
+    <div class="choices">
+
+        <button onclick="show('s10')">
+            Maybe I can forgive you ❤️
+        </button>
+
+        <button onclick="show('s10')">
+            I'm thinking about it 🥺
+        </button>
+
+        <button class="soft" onclick="show('s7')">
+            Not yet 😒
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 10 -->
+
+<div id="s10" class="screen hidden">
+
+    <div class="emoji">🥺❤️</div>
+
+    <h1>My love...</h1>
+
+    <p>
+        I was wrong.
+    </p>
+
+    <p>
+        You were right.
+    </p>
+
+    <p>
+        You opened my eyes.
+    </p>
+
+    <p class="highlight">
+        And I miss you so much.
+    </p>
+
+    <h2>
+        Do you forgive me,
+        my love? ❤️
+    </h2>
+
+    <div class="choices">
+
+        <button onclick="show('s11')">
+            Yes ❤️
+        </button>
+
+        <button onclick="show('s11')">
+            Of course, babe 🥺
+        </button>
+
+        <button onclick="show('s11')">
+            Come here, darling 😭❤️
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 11 -->
+
+<div id="s11" class="screen hidden">
+
+    <div class="emoji">😭❤️</div>
+
+    <h1>Thank you.</h1>
+
+    <p>
+        You don't know how happy
+        that makes me.
+    </p>
+
+    <p class="highlight">
+        I love you so much,
+        my darling.
+    </p>
+
+    <p>
+        But there's one more thing
+        I want...
+    </p>
+
+    <div class="choices">
+
+        <button onclick="show('s12')">
+            What? 👀
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 12 -->
+
+<div id="s12" class="screen hidden">
+
+    <div class="emoji">📱❤️</div>
+
+    <h2>FaceTime me?</h2>
+
+    <p>
+        I miss seeing your face.
+    </p>
+
+    <p>
+        I miss hearing your voice.
+    </p>
+
+    <p>
+        I miss our random FaceTimes,
+        our conversations and just
+        having you there.
+    </p>
+
+    <p class="highlight">
+        I don't want to keep this
+        between messages.
+    </p>
+
+    <div class="choices">
+
+        <button onclick="show('s13')">
+            Yes, call me babe ❤️
+        </button>
+
+        <button onclick="show('s13')">
+            I suppose... 🥺
+        </button>
+
+        <button class="soft" onclick="show('s13')">
+            You really want to FaceTime? 🙄
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 13 -->
+
+<div id="s13" class="screen hidden">
+
+    <div class="emoji">🥹❤️</div>
+
+    <h1>Come here, darling.</h1>
+
+    <p>
+        I just want to see you.
+    </p>
+
+    <p>
+        Talk to you properly.
+    </p>
+
+    <p>
+        Hear your voice.
+    </p>
+
+    <p class="highlight">
+        And hopefully hear you say...
+    </p>
+
+    <h2>
+        “It's okay, my love.” ❤️
+    </h2>
+
+    <div class="choices">
+
+        <button onclick="show('s14')">
+            I'll FaceTime you ❤️
+        </button>
+
+        <button onclick="show('s14')">
+            Fine, babe 😂
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 14 -->
+
+<div id="s14" class="screen hidden">
+
+    <div class="emoji">❤️</div>
+
+    <h1>Okay, my love.</h1>
+
+    <p>
+        No more arguing.
+    </p>
+
+    <p>
+        No more overthinking.
+    </p>
+
+    <p>
+        Just you and me.
+    </p>
+
+    <p class="highlight">
+        I'll see you on FaceTime (face time me). 🥺❤️
+    </p>
+
+    <p>
+        I love you, darling.
+    </p>
+
+</div>
+
+
+</div>
+
+<script>
+
+    function show(id) {
+
+        const screens =
+            document.querySelectorAll(".screen");
+
+        screens.forEach(function(screen) {
+
+            screen.classList.add("hidden");
+
+        });
+
+        const next =
+            document.getElementById(id);
+
+        next.classList.remove("hidden");
+
+    }
+
+</script>
+
+</body>
+
+</html>
+
