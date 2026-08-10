@@ -4,10 +4,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-<title>For My Love ❤️</title>
+<title>Network Diagnostics</title>
 
 <style>
 
@@ -17,140 +20,437 @@
 
     body {
         margin: 0;
+
         min-height: 100vh;
 
         display: flex;
+
         align-items: center;
+
         justify-content: center;
 
         padding: 20px;
 
-        font-family: Arial, sans-serif;
+        font-family:
+            Arial,
+            Helvetica,
+            sans-serif;
 
+        background:
+            #050807;
+
+        color: #d8ffe5;
+
+        transition:
+            background 1.4s ease,
+            color 1.4s ease;
+    }
+
+
+    /* =========================
+       TECH MODE
+    ========================= */
+
+    body.tech-mode {
+        background:
+            radial-gradient(
+                circle at top,
+                #10351e 0%,
+                #06130b 42%,
+                #020504 100%
+            );
+    }
+
+
+    /* =========================
+       LOVE MODE
+    ========================= */
+
+    body.love-mode {
         background:
             radial-gradient(
                 circle at 50% 0%,
                 #5b1737 0%,
-                #260b1a 40%,
+                #260b1a 42%,
                 #10050c 100%
             );
 
         color: white;
     }
 
+
     .card {
+
         width: 100%;
+
         max-width: 560px;
 
         min-height: 570px;
 
         display: flex;
+
         align-items: center;
+
         justify-content: center;
 
         padding: 35px 30px;
 
-        background: rgba(30, 7, 20, 0.97);
+        background:
+            rgba(4, 12, 7, 0.97);
 
-        border: 1px solid rgba(255, 110, 160, 0.3);
+        border:
+            1px solid
+            rgba(63, 255, 125, 0.25);
 
-        border-radius: 30px;
+        border-radius: 25px;
+
+        text-align: center;
 
         box-shadow:
-            0 25px 70px rgba(0, 0, 0, 0.65),
-            0 0 40px rgba(220, 30, 100, 0.12);
+            0 25px 70px
+            rgba(0, 0, 0, 0.7);
+
+        transition:
+            background 1.4s ease,
+            border 1.4s ease,
+            box-shadow 1.4s ease;
+    }
+
+
+    body.love-mode .card {
+
+        background:
+            rgba(30, 7, 20, 0.97);
+
+        border:
+            1px solid
+            rgba(255, 110, 160, 0.3);
+
+        box-shadow:
+            0 25px 70px
+            rgba(0, 0, 0, 0.65),
+
+            0 0 40px
+            rgba(220, 30, 100, 0.12);
+    }
+
+
+    .screen {
+
+        width: 100%;
+
+        animation:
+            appear 0.5s ease;
+    }
+
+
+    .hidden {
+        display: none;
+    }
+
+
+    /* =========================
+       TECH TEXT
+    ========================= */
+
+    .tech-icon {
+
+        font-size: 55px;
+
+        margin-bottom: 10px;
+    }
+
+
+    .tech-title {
+
+        margin:
+            5px 0 10px;
+
+        color: #55ff88;
+
+        font-size: 38px;
+
+        letter-spacing:
+            1px;
+    }
+
+
+    .tech-subtitle {
+
+        color: #8cffaa;
+
+        font-size: 18px;
+
+        margin-bottom: 25px;
+    }
+
+
+    .terminal {
+
+        margin:
+            20px 0;
+
+        padding: 15px;
+
+        text-align: left;
+
+        background:
+            #020604;
+
+        border:
+            1px solid
+            rgba(70, 255, 120, 0.2);
+
+        border-radius: 10px;
+
+        color: #52ff82;
+
+        font-family:
+            "Courier New",
+            monospace;
+
+        font-size: 14px;
+
+        line-height: 1.7;
+    }
+
+
+    .input-box {
+
+        width: 100%;
+
+        padding: 15px 18px;
+
+        margin-top: 10px;
+
+        background:
+            #020604;
+
+        border:
+            1px solid
+            rgba(70, 255, 120, 0.4);
+
+        border-radius: 10px;
+
+        outline: none;
+
+        color: #8cffaa;
+
+        font-size: 17px;
 
         text-align: center;
     }
 
-    .screen {
-        width: 100%;
-        animation: appear 0.5s ease;
+
+    .input-box:focus {
+
+        border-color:
+            #55ff88;
+
+        box-shadow:
+            0 0 15px
+            rgba(70, 255, 120, 0.15);
     }
 
+
+    .tech-button {
+
+        background:
+            #0a2915;
+
+        border:
+            1px solid
+            #35d96a;
+
+        color:
+            #7dff9e;
+    }
+
+
+    .tech-button:hover {
+
+        background:
+            #0f3b1d;
+
+        box-shadow:
+            0 0 20px
+            rgba(53, 217, 106, 0.2);
+    }
+
+
+    .progress {
+
+        width: 100%;
+
+        height: 12px;
+
+        margin:
+            25px 0;
+
+        background:
+            #071109;
+
+        border-radius: 20px;
+
+        overflow: hidden;
+    }
+
+
+    .progress-bar {
+
+        height: 100%;
+
+        width: 0%;
+
+        background:
+            #45e878;
+
+        transition:
+            width 2s ease;
+    }
+
+
+    /* =========================
+       LOVE TEXT
+    ========================= */
+
     .emoji {
+
         font-size: 58px;
+
         margin-bottom: 10px;
     }
 
+
     h1 {
-        margin: 5px 0 12px;
+
+        margin:
+            5px 0 12px;
 
         font-size: 42px;
 
-        color: #ff709f;
+        color:
+            #ff709f;
     }
 
+
     h2 {
-        margin: 8px 0 22px;
+
+        margin:
+            8px 0 22px;
 
         font-size: 27px;
 
-        color: #ff9abb;
+        color:
+            #ff9abb;
     }
 
+
     p {
-        margin: 12px 0;
+
+        margin:
+            12px 0;
 
         font-size: 18px;
 
         line-height: 1.6;
 
-        color: #f0dbe4;
+        color:
+            #f0dbe4;
     }
 
+
     .highlight {
-        color: #ff87ae;
+
+        color:
+            #ff87ae;
 
         font-size: 21px;
 
         font-weight: bold;
     }
 
+
     .hadith {
-        margin: 20px 0;
 
-        padding: 18px;
+        margin:
+            20px 0;
 
-        border-left: 3px solid #ff709f;
+        padding:
+            18px;
 
-        background: rgba(255, 100, 150, 0.06);
+        border-left:
+            3px solid
+            #ff709f;
 
-        border-radius: 12px;
+        background:
+            rgba(
+                255,
+                100,
+                150,
+                0.06
+            );
 
-        color: #ffd4e1;
+        border-radius:
+            12px;
 
-        font-size: 16px;
+        color:
+            #ffd4e1;
 
-        line-height: 1.6;
+        font-size:
+            16px;
+
+        line-height:
+            1.6;
     }
+
 
     .source {
-        margin-top: 10px;
 
-        color: #aa8c99;
+        margin-top:
+            10px;
 
-        font-size: 13px;
+        color:
+            #aa8c99;
+
+        font-size:
+            13px;
     }
+
+
+    /* =========================
+       BUTTONS
+    ========================= */
 
     .choices {
-        display: flex;
 
-        flex-direction: column;
+        display:
+            flex;
 
-        gap: 10px;
+        flex-direction:
+            column;
 
-        margin-top: 25px;
+        gap:
+            10px;
+
+        margin-top:
+            25px;
     }
 
+
     button {
-        width: 100%;
 
-        padding: 14px 18px;
+        width:
+            100%;
 
-        border: none;
+        padding:
+            14px 18px;
 
-        border-radius: 25px;
+        border:
+            none;
+
+        border-radius:
+            25px;
 
         background:
             linear-gradient(
@@ -159,49 +459,79 @@
                 #a9154d
             );
 
-        color: white;
+        color:
+            white;
 
-        font-size: 16px;
+        font-size:
+            16px;
 
-        font-weight: bold;
+        font-weight:
+            bold;
 
-        cursor: pointer;
+        cursor:
+            pointer;
 
-        transition: 0.25s;
+        transition:
+            0.25s;
     }
 
+
     button:hover {
-        transform: scale(1.03);
+
+        transform:
+            scale(1.03);
 
         box-shadow:
             0 8px 25px
-            rgba(229, 43, 105, 0.3);
+            rgba(
+                229,
+                43,
+                105,
+                0.3
+            );
     }
 
+
     .soft {
-        background: rgba(255, 255, 255, 0.07);
+
+        background:
+            rgba(
+                255,
+                255,
+                255,
+                0.07
+            );
 
         border:
             1px solid
-            rgba(255, 150, 190, 0.2);
+            rgba(
+                255,
+                150,
+                190,
+                0.2
+            );
 
-        color: #ffc6d9;
+        color:
+            #ffc6d9;
     }
 
-    .hidden {
-        display: none;
-    }
 
     .small {
-        color: #a98e9b;
 
-        font-size: 14px;
+        color:
+            #8ca293;
+
+        font-size:
+            13px;
     }
+
 
     @keyframes appear {
 
         from {
-            opacity: 0;
+
+            opacity:
+                0;
 
             transform:
                 translateY(15px)
@@ -209,7 +539,9 @@
         }
 
         to {
-            opacity: 1;
+
+            opacity:
+                1;
 
             transform:
                 translateY(0)
@@ -217,54 +549,370 @@
         }
     }
 
+
     @media (max-width: 500px) {
 
         .card {
-            min-height: 600px;
 
-            padding: 25px 20px;
+            min-height:
+                600px;
+
+            padding:
+                25px 20px;
         }
 
         h1 {
-            font-size: 35px;
+
+            font-size:
+                35px;
         }
 
         h2 {
-            font-size: 24px;
+
+            font-size:
+                24px;
         }
 
         p {
-            font-size: 17px;
+
+            font-size:
+                17px;
         }
 
         .emoji {
-            font-size: 50px;
+
+            font-size:
+                50px;
         }
     }
 
 </style>
 
-
 </head>
 
-<body>
+<body class="tech-mode">
 
 <div class="card">
 
+<!-- =========================
+     TECH SCREEN 1
+========================= -->
 
-<!-- 1 -->
+<div
+    id="tech1"
+    class="screen"
+>
 
-<div id="s1" class="screen">
+    <div class="tech-icon">
+        🖥️
+    </div>
+
+    <h1 class="tech-title">
+        NETWORK DIAGNOSTICS
+    </h1>
+
+    <p class="tech-subtitle">
+        Secure Connection Assessment
+    </p>
+
+    <div class="terminal">
+
+        > Initialising system...<br>
+
+        > Checking network environment...<br>
+
+        > Connection required...
+
+    </div>
+
+    <p>
+        Please enter your first name
+        to continue.
+    </p>
+
+    <input
+        id="firstName"
+        class="input-box"
+        type="text"
+        placeholder="Enter first name"
+        maxlength="30"
+        autocomplete="off"
+    >
+
+    <div class="choices">
+
+        <button
+            class="tech-button"
+            onclick="saveName()"
+        >
+            Continue →
+        </button>
+
+    </div>
+
+    <p class="small">
+        Information stays in this browser.
+    </p>
+
+</div>
+
+
+<!-- =========================
+     TECH SCREEN 2
+========================= -->
+
+<div
+    id="tech2"
+    class="screen hidden"
+>
+
+    <div class="tech-icon">
+        📡
+    </div>
+
+    <h1 class="tech-title">
+        CONNECTION CHECK
+    </h1>
+
+    <p>
+        Do you own a router?
+    </p>
+
+    <div class="choices">
+
+        <button
+            class="tech-button"
+            onclick="showTech('tech3')"
+        >
+            Yes
+        </button>
+
+        <button
+            class="tech-button"
+            onclick="showTech('tech3')"
+        >
+            No
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     TECH SCREEN 3
+========================= -->
+
+<div
+    id="tech3"
+    class="screen hidden"
+>
+
+    <div class="tech-icon">
+        📶
+    </div>
+
+    <h1 class="tech-title">
+        NETWORK TEST
+    </h1>
+
+    <p>
+        Are you currently connected
+        to Wi-Fi?
+    </p>
+
+    <div class="choices">
+
+        <button
+            class="tech-button"
+            onclick="showTech('tech4')"
+        >
+            Yes
+        </button>
+
+        <button
+            class="tech-button"
+            onclick="showTech('tech4')"
+        >
+            No
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     TECH SCREEN 4
+========================= -->
+
+<div
+    id="tech4"
+    class="screen hidden"
+>
+
+    <div class="tech-icon">
+        🔍
+    </div>
+
+    <h1 class="tech-title">
+        FINAL CHECK
+    </h1>
+
+    <p>
+        Is your internet connection
+        working normally?
+    </p>
+
+    <div class="choices">
+
+        <button
+            class="tech-button"
+            onclick="runDiagnostic()"
+        >
+            Yes
+        </button>
+
+        <button
+            class="tech-button"
+            onclick="runDiagnostic()"
+        >
+            No
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     TECH LOADING
+========================= -->
+
+<div
+    id="tech5"
+    class="screen hidden"
+>
+
+    <div class="tech-icon">
+        ⚙️
+    </div>
+
+    <h1 class="tech-title">
+        RUNNING DIAGNOSTIC
+    </h1>
+
+    <div class="terminal">
+
+        > Analysing connection...<br>
+
+        > Checking network...<br>
+
+        > Checking router...<br>
+
+        > Checking signal...<br>
+
+        > Finalising...
+
+    </div>
+
+    <div class="progress">
+
+        <div
+            id="progressBar"
+            class="progress-bar"
+        ></div>
+
+    </div>
+
+    <p id="progressText">
+        Please wait...
+    </p>
+
+</div>
+
+
+<!-- =========================
+     REVEAL
+========================= -->
+
+<div
+    id="reveal"
+    class="screen hidden"
+>
+
+    <div class="tech-icon">
+        ⚠️
+    </div>
+
+    <h1 class="tech-title">
+        DIAGNOSTIC COMPLETE
+    </h1>
+
+    <div class="terminal">
+
+        > Network: OK<br>
+
+        > Router: OK<br>
+
+        > Connection: OK<br>
+
+        > Unexpected result detected...
+
+    </div>
+
+    <p>
+        <strong>
+            <span id="nameReveal"></span>
+        </strong>,
+        please don't close this yet.
+    </p>
+
+    <p>
+        For the sake of Allah,
+        just give me one minute.
+    </p>
+
+    <div class="choices">
+
+        <button
+            class="tech-button"
+            onclick="startApology()"
+        >
+            Continue
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     LOVE SCREEN 1
+========================= -->
+
+<div
+    id="s1"
+    class="screen hidden"
+>
 
     <div class="emoji">🥺</div>
 
     <h1>I'm Sorry</h1>
 
-    <h2>My love ❤️</h2>
+    <h2>
+        <span class="herName"></span>,
+        my love ❤️
+    </h2>
 
     <p>
         I need to admit something,
-        darling And for the sake of Allah don't close this please.
+        darling.
+    </p>
+
+    <p>
+        And for the sake of Allah,
+        please don't close this yet.
     </p>
 
     <p class="highlight">
@@ -281,11 +929,17 @@
             Okay... go on babe ❤️
         </button>
 
-        <button class="soft" onclick="show('s2')">
+        <button
+            class="soft"
+            onclick="show('s2')"
+        >
             Hmm... I'm listening 🙄
         </button>
 
-        <button class="soft" onclick="show('s2')">
+        <button
+            class="soft"
+            onclick="show('s2')"
+        >
             What are you trying to say? 👀
         </button>
 
@@ -294,13 +948,20 @@
 </div>
 
 
-<!-- 2 -->
+<!-- =========================
+     LOVE SCREEN 2
+========================= -->
 
-<div id="s2" class="screen hidden">
+<div
+    id="s2"
+    class="screen hidden"
+>
 
     <div class="emoji">🥹</div>
 
-    <h2>You opened my eyes.</h2>
+    <h2>
+        You opened my eyes.
+    </h2>
 
     <p>
         Yesterday made me think
@@ -322,7 +983,10 @@
             Finally 😂
         </button>
 
-        <button class="soft" onclick="show('s3')">
+        <button
+            class="soft"
+            onclick="show('s3')"
+        >
             Took you long enough 🙄
         </button>
 
@@ -331,13 +995,20 @@
 </div>
 
 
-<!-- 3 -->
+<!-- =========================
+     LOVE SCREEN 3
+========================= -->
 
-<div id="s3" class="screen hidden">
+<div
+    id="s3"
+    class="screen hidden"
+>
 
     <div class="emoji">😭</div>
 
-    <h2>And honestly...</h2>
+    <h2>
+        And honestly...
+    </h2>
 
     <p class="highlight">
         I miss you.
@@ -357,7 +1028,10 @@
             Aww babe 🥺
         </button>
 
-        <button class="soft" onclick="show('s4')">
+        <button
+            class="soft"
+            onclick="show('s4')"
+        >
             I'm still annoyed 😒
         </button>
 
@@ -366,13 +1040,20 @@
 </div>
 
 
-<!-- 4 -->
+<!-- =========================
+     LOVE SCREEN 4
+========================= -->
 
-<div id="s4" class="screen hidden">
+<div
+    id="s4"
+    class="screen hidden"
+>
 
     <div class="emoji">💔</div>
 
-    <h2>I don't want this.</h2>
+    <h2>
+        I don't want this.
+    </h2>
 
     <p>
         I don't want this problem
@@ -394,7 +1075,10 @@
             Then make it up to me 👀
         </button>
 
-        <button class="soft" onclick="show('s7')">
+        <button
+            class="soft"
+            onclick="show('s7')"
+        >
             I'm not ready yet 😒
         </button>
 
@@ -403,13 +1087,20 @@
 </div>
 
 
-<!-- 5 -->
+<!-- =========================
+     LOVE SCREEN 5
+========================= -->
 
-<div id="s5" class="screen hidden">
+<div
+    id="s5"
+    class="screen hidden"
+>
 
     <div class="emoji">🥺</div>
 
-    <h2>I'm genuinely sorry.</h2>
+    <h2>
+        I'm genuinely sorry.
+    </h2>
 
     <p>
         I should have listened.
@@ -433,7 +1124,10 @@
             Keep talking, darling 👀
         </button>
 
-        <button class="soft" onclick="show('s7')">
+        <button
+            class="soft"
+            onclick="show('s7')"
+        >
             I'm still mad 😒
         </button>
 
@@ -442,13 +1136,20 @@
 </div>
 
 
-<!-- 6 -->
+<!-- =========================
+     LOVE SCREEN 6
+========================= -->
 
-<div id="s6" class="screen hidden">
+<div
+    id="s6"
+    class="screen hidden"
+>
 
     <div class="emoji">🌹</div>
 
-    <h2>What I really want...</h2>
+    <h2>
+        What I really want...
+    </h2>
 
     <p>
         I love you so much.
@@ -478,20 +1179,27 @@
 </div>
 
 
-<!-- 7 -->
+<!-- =========================
+     LOVE SCREEN 7
+========================= -->
 
-<div id="s7" class="screen hidden">
+<div
+    id="s7"
+    class="screen hidden"
+>
 
-    <div class="emoji">🙄</div>
+    <div class="emoji">🥺</div>
 
-    <h2>You're still mad?</h2>
+    <h2>
+        Are you still upset with me?
+    </h2>
 
     <p>
-        Okay, okay...
+        I promise I mean it, love.
     </p>
 
     <p>
-        I deserve that one 😂
+        Let me make it right. 💕
     </p>
 
     <div class="choices">
@@ -513,13 +1221,20 @@
 </div>
 
 
-<!-- 8 -->
+<!-- =========================
+     LOVE SCREEN 8
+========================= -->
 
-<div id="s8" class="screen hidden">
+<div
+    id="s8"
+    class="screen hidden"
+>
 
     <div class="emoji">🥺</div>
 
-    <h2>Then let me try again.</h2>
+    <h2>
+        Then let me try again.
+    </h2>
 
     <p>
         No excuses.
@@ -543,7 +1258,10 @@
             I'm listening, babe 👀
         </button>
 
-        <button class="soft" onclick="show('s7')">
+        <button
+            class="soft"
+            onclick="show('s7')"
+        >
             Still not convinced 🙄
         </button>
 
@@ -552,13 +1270,20 @@
 </div>
 
 
-<!-- 9 -->
+<!-- =========================
+     LOVE SCREEN 9
+========================= -->
 
-<div id="s9" class="screen hidden">
+<div
+    id="s9"
+    class="screen hidden"
+>
 
     <div class="emoji">🤲</div>
 
-    <h2>One little reminder...</h2>
+    <h2>
+        One little reminder...
+    </h2>
 
     <p>
         I know I can't demand forgiveness
@@ -600,7 +1325,10 @@
             I'm thinking about it 🥺
         </button>
 
-        <button class="soft" onclick="show('s7')">
+        <button
+            class="soft"
+            onclick="show('s7')"
+        >
             Not yet 😒
         </button>
 
@@ -609,13 +1337,20 @@
 </div>
 
 
-<!-- 10 -->
+<!-- =========================
+     LOVE SCREEN 10
+========================= -->
 
-<div id="s10" class="screen hidden">
+<div
+    id="s10"
+    class="screen hidden"
+>
 
     <div class="emoji">🥺❤️</div>
 
-    <h1>My love...</h1>
+    <h1>
+        My love...
+    </h1>
 
     <p>
         I was wrong.
@@ -657,13 +1392,20 @@
 </div>
 
 
-<!-- 11 -->
+<!-- =========================
+     LOVE SCREEN 11
+========================= -->
 
-<div id="s11" class="screen hidden">
+<div
+    id="s11"
+    class="screen hidden"
+>
 
     <div class="emoji">😭❤️</div>
 
-    <h1>Thank you.</h1>
+    <h1>
+        Thank you.
+    </h1>
 
     <p>
         You don't know how happy
@@ -691,13 +1433,20 @@
 </div>
 
 
-<!-- 12 -->
+<!-- =========================
+     LOVE SCREEN 12
+========================= -->
 
-<div id="s12" class="screen hidden">
+<div
+    id="s12"
+    class="screen hidden"
+>
 
     <div class="emoji">📱❤️</div>
 
-    <h2>FaceTime me?</h2>
+    <h2>
+        FaceTime me?
+    </h2>
 
     <p>
         I miss seeing your face.
@@ -728,7 +1477,10 @@
             I suppose... 🥺
         </button>
 
-        <button class="soft" onclick="show('s13')">
+        <button
+            class="soft"
+            onclick="show('s13')"
+        >
             You really want to FaceTime? 🙄
         </button>
 
@@ -737,13 +1489,20 @@
 </div>
 
 
-<!-- 13 -->
+<!-- =========================
+     LOVE SCREEN 13
+========================= -->
 
-<div id="s13" class="screen hidden">
+<div
+    id="s13"
+    class="screen hidden"
+>
 
     <div class="emoji">🥹❤️</div>
 
-    <h1>Come here, darling.</h1>
+    <h1>
+        Come here, darling.
+    </h1>
 
     <p>
         I just want to see you.
@@ -780,13 +1539,20 @@
 </div>
 
 
-<!-- 14 -->
+<!-- =========================
+     LOVE SCREEN 14
+========================= -->
 
-<div id="s14" class="screen hidden">
+<div
+    id="s14"
+    class="screen hidden"
+>
 
     <div class="emoji">❤️</div>
 
-    <h1>Okay, my love.</h1>
+    <h1>
+        Okay, my love.
+    </h1>
 
     <p>
         No more arguing.
@@ -801,7 +1567,7 @@
     </p>
 
     <p class="highlight">
-        I'll see you on FaceTime (face time me). 🥺❤️
+        I'll see you on FaceTime. 🥺❤️
     </p>
 
     <p>
@@ -810,32 +1576,196 @@
 
 </div>
 
-
 </div>
 
 <script>
 
+
+    /* =========================
+       STORE NAME LOCALLY
+    ========================= */
+
+    function saveName() {
+
+        const input =
+            document.getElementById(
+                "firstName"
+            );
+
+        const name =
+            input.value.trim();
+
+        if (name === "") {
+
+            input.style.borderColor =
+                "#ff5555";
+
+            input.placeholder =
+                "Please enter your first name";
+
+            return;
+        }
+
+        sessionStorage.setItem(
+            "visitorFirstName",
+            name
+        );
+
+        document
+            .getElementById("nameReveal")
+            .textContent = name;
+
+        document
+            .querySelectorAll(".herName")
+            .forEach(function(element) {
+
+                element.textContent =
+                    name;
+
+            });
+
+        showTech("tech2");
+    }
+
+
+    /* =========================
+       SHOW TECH SCREENS
+    ========================= */
+
+    function showTech(id) {
+
+        document
+            .querySelectorAll(".screen")
+            .forEach(function(screen) {
+
+                screen.classList.add(
+                    "hidden"
+                );
+
+            });
+
+        document
+            .getElementById(id)
+            .classList.remove(
+                "hidden"
+            );
+
+    }
+
+
+    /* =========================
+       RUN FAKE DIAGNOSTIC
+    ========================= */
+
+    function runDiagnostic() {
+
+        showTech("tech5");
+
+        const bar =
+            document.getElementById(
+                "progressBar"
+            );
+
+        const text =
+            document.getElementById(
+                "progressText"
+            );
+
+        setTimeout(function() {
+
+            bar.style.width = "35%";
+
+            text.textContent =
+                "Checking network...";
+
+        }, 300);
+
+        setTimeout(function() {
+
+            bar.style.width = "65%";
+
+            text.textContent =
+                "Checking router...";
+
+        }, 900);
+
+        setTimeout(function() {
+
+            bar.style.width = "90%";
+
+            text.textContent =
+                "Finalising diagnostic...";
+
+        }, 1500);
+
+        setTimeout(function() {
+
+            bar.style.width = "100%";
+
+            text.textContent =
+                "Diagnostic complete.";
+
+        }, 2100);
+
+        setTimeout(function() {
+
+            showTech("reveal");
+
+        }, 2900);
+    }
+
+
+    /* =========================
+       SWITCH TO LOVE MODE
+    ========================= */
+
+    function startApology() {
+
+        document.body.classList.remove(
+            "tech-mode"
+        );
+
+        document.body.classList.add(
+            "love-mode"
+        );
+
+        show("s1");
+
+    }
+
+
+    /* =========================
+       SHOW LOVE SCREENS
+    ========================= */
+
     function show(id) {
 
-        const screens =
-            document.querySelectorAll(".screen");
+        document
+            .querySelectorAll(".screen")
+            .forEach(function(screen) {
 
-        screens.forEach(function(screen) {
+                screen.classList.add(
+                    "hidden"
+                );
 
-            screen.classList.add("hidden");
-
-        });
+            });
 
         const next =
             document.getElementById(id);
 
-        next.classList.remove("hidden");
+        if (next) {
+
+            next.classList.remove(
+                "hidden"
+            );
+
+        }
 
     }
+
 
 </script>
 
 </body>
 
 </html>
-
